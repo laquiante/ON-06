@@ -1,39 +1,3 @@
-
-Skip to content
-Pull requests
-Issues
-Marketplace
-Explore
-@laquiante
-Learn Git and GitHub without any code!
-
-Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
-laquiante /
-ON-02
-
-2
-1
-
-    2
-
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-
-    Settings
-
-ON-02/daemons
-@laquiante
-laquiante Create daemons
-Latest commit f17fed5 on Jul 8, 2020
-History
-1 contributor
-71 lines (68 sloc) 2.14 KB
 # This file tells the frr package which daemons to start.
 #
 # Entries are in the format: <daemon>=(yes|no|priority)
@@ -105,18 +69,3 @@ vrrpd_options="  -A 127.0.0.1"
 # or you can use "all_wrap" for all daemons, e.g. to use perf record:
 #   all_wrap="/usr/bin/perf record --call-graph -"
 # the normal daemon command is added to this at the end.
-
-    © 2021 GitHub, Inc.
-    Terms
-    Privacy
-    Security
-    Status
-    Docs
-
-    Contact GitHub
-    Pricing
-    API
-    Training
-    Blog
-    About
-
