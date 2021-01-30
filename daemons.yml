@@ -1,0 +1,89 @@
+# Einspielen der Routing Daemon
+# und "restart" von FRR
+
+- hosts: institut01
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - copy:
+        src: /home/cumulus/ON-06/daemons
+        dest: /etc/frr/daemons
+      notify:
+        - frr_restart
+        
+  handlers:
+    - name: frr_restart
+      service:
+        name=frr
+        state=restarted
+      listen: "frr_restart"
+        
+- hosts: insitut02
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - copy:
+        src: /home/cumulus/ON-06/daemons
+        dest: /etc/frr/daemons
+      notify:
+        - frr_restart
+
+  handlers:
+    - name: frr_restart
+      service:
+        name=frr
+        state=restarted
+      listen: "frr_restart"
+
+- hosts: SWT01
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - copy:
+        src: /home/cumulus/ON-06/daemons
+        dest: /etc/frr/daemons
+      notify:
+        - frr_restart
+
+  handlers:
+    - name: frr_restart
+      service:
+        name=frr
+        state=restarted
+      listen: "frr_restart"
+
+- hosts: SWT02
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - copy:
+        src: /home/cumulus/ON-06/daemons
+        dest: /etc/frr/daemons
+      notify:
+        - frr_restart
+
+  handlers:
+    - name: frr_restart
+      service:
+        name=frr
+        state=restarted
+      listen: "frr_restart"
+
+- hosts: SWT03
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - copy:
+        src: /home/cumulus/ON-06/daemons
+        dest: /etc/frr/daemons
+      notify:
+        - frr_restart
+
+  handlers:
+    - name: frr_restart
+      service:
+        name=frr
+        state=restarted
+      listen: "frr_restart"
+
+
