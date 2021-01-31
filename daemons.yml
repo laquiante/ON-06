@@ -18,7 +18,7 @@
         state=restarted
       listen: "frr_restart"
         
-- hosts: insitut02
+- hosts: institut02
   name: Configure /etc/frr/daemon
   become: yes
   tasks:
