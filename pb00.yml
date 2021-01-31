@@ -1,0 +1,172 @@
+# Server01 Schnittstellen Datei
+
+- hosts: server01
+  name: Server01 Interfaces
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: IPv4
+      copy: 
+        src: /home/cumulus/ON-06/server01
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes on Server01
+      shell: /sbin/ifreload -a
+
+# Server02 Schnittstellen Datei
+
+- hosts: server02
+  name: Server02 Interfaces
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: IPv4
+      copy: 
+        src: /home/cumulus/ON-06/server02
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes on Server02
+      shell: /sbin/ifreload -a
+      
+
+# #################################################################
+# #################################################################
+# #################################################################
+
+# institut01 IF Datei
+
+- hosts: institut01
+  name: institut01 Interfaces
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Konfiguration e/n/i
+      copy: 
+        src: /home/cumulus/ON-06/institut01
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes on institut01
+      shell: /sbin/ifreload -a
+      
+      # institut01 IF Datei
+
+- hosts: institut02
+  name: institut02 Interfaces
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Konfiguration e/n/i
+      copy: 
+        src: /home/cumulus/ON-06/institut02
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes on institut02
+      shell: /sbin/ifreload -a
+      
+# #################################################################    
+
+- hosts: SWT01
+  name: SWT01 Interfaces
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Konfiguration e/n/i
+      copy: 
+        src: /home/cumulus/ON-06/SWT01
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes on SWT01
+      shell: /sbin/ifreload -a
+      
+- hosts: SWT02
+  name: SWT02 Interfaces
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Konfiguration e/n/i
+      copy: 
+        src: /home/cumulus/ON-06/SWT02
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes on SWT02
+      shell: /sbin/ifreload -a
+
+- hosts: SWT03
+  name: SWT03 Interfaces
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Konfiguration e/n/i
+      copy: 
+        src: /home/cumulus/ON-06/SWT03
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes on SWT03
+      shell: /sbin/ifreload -a
+      
+# #################################################################   
+
+# SWT01 routing      
+      
+- hosts: SWT01
+  name: BGP
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: clean up
+      copy:
+        src: /home/cumulus/ON-06/SWT01FRR
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
+        
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
+      
+      # SWT01 routing      
+      
+- hosts: SWT02
+  name: BGP
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: clean up
+      copy:
+        src: /home/cumulus/ON-06/SWT02FRR
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
+        
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
+      
+      # SWT01 routing      
+      
+- hosts: SWT03
+  name: BGP
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: clean up
+      copy:
+        src: /home/cumulus/ON-06/SWT03FRR
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
+        
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
+    
+# #################################################################    
