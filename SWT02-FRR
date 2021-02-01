@@ -1,0 +1,17 @@
+!
+frr version 7.0+cl4u3
+frr defaults datacenter
+hostname SWT02
+log syslog informational
+service integrated-vtysh-config
+!
+router bgp 42000002
+ neighbor swp1 interface remote-as external
+ neighbor swp2 interface remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+!
+line vty
+!
