@@ -1,0 +1,33 @@
+auto lo
+iface lo inet loopback
+
+auto swp1
+iface swp1
+    address 172.31.1.1/24
+
+auto swp11
+iface swp11
+    bridge-access 64
+
+auto bridge
+iface bridge
+    bridge-ports swp11
+    bridge-vids 64
+    bridge-vlan-aware yes
+    
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    
+    
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
+
+auto vlan64
+iface vlan64
+    address 134.60.64.1/24
+    vlan-id 64
+    vlan-raw-device bridge 
