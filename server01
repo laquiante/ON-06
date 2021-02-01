@@ -15,4 +15,4 @@ iface eth1 inet static
         address 134.60.64.2
         netmask 255.255.255.0
         post-up /sbin/route add -net 134.60.30.0 netmask 255.255.255.0 gw 134.60.64.1
-source /etc/network/interfaces.d/*.cfg
+
