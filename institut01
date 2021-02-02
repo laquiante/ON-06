@@ -39,4 +39,5 @@ iface vxlan10
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
     vxlan-id 10
-    vxlan-local-tunnelip 134.60.64.254                           vxlan-remoteip 134.60.30.254
+    vxlan-local-tunnelip 134.60.64.254                           
+    vxlan-remoteip 134.60.30.254
