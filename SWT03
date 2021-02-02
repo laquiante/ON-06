@@ -28,4 +28,5 @@ iface eth0 inet dhcp
 auto vlan30
 iface vlan30
     address 134.60.30.1/24
-    vlan-id 30                                                   vlan-raw-device bridge
+    vlan-id 30                                                   
+    vlan-raw-device bridge
